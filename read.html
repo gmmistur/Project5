@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="utf-8">
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/hu_vars.js"></script>
+    <script>    
+		function getID() {
+			id = window.location.search.substring(1);
+			id = id.split("=");
+			//document.getElementById("demo").innerHTML = id[1];
+			return id[1];
+		}
+	         $.get("http://csis.svsu.edu/~gmmistur/Project5/read.php", function(data) { 
+				if( data == "false" ) { 
+					location.href = "customers.html"; 
+				}
+			});
+        function retrievePage() {
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("body").innerHTML = xhttp.responseText;
+                }
+            };
+            xhttp.open("GET", "http://csis.svsu.edu/~gmmistur/Project5/read.php?id=" + getID(), true);
+            xhttp.send();
+        } 
+    </script>
+</head>
+
+<body onload="retrievePage();">
+    <div class="padding">
+        <div id="body">
+        </div>
+    </div>
+</body>
+</html>
